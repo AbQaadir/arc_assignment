@@ -1,9 +1,10 @@
-package com.example.propertyms.property;
+package com.arc.propertyms.property;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +30,7 @@ public class Property {
     private String price;
 
     @Column(name = "property_date")
+    @CreationTimestamp
     private String date;
 
     @Column(name = "property_admin_id")

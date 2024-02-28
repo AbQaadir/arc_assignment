@@ -1,4 +1,4 @@
-package com.example.propertyms;
+package com.arc.propertyms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
