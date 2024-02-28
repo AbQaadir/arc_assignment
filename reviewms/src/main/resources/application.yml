@@ -1,0 +1,18 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: property-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/review
+    username: arc
+    password: arc
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
