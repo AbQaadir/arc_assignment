@@ -1,12 +1,12 @@
 server:
-  port: 8000
+  port: 8003
 
 spring:
   application:
     name: property-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/property
+    url: jdbc:postgresql://localhost:5432/image
     username: arc
     password: arc
 
