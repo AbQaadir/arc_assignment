@@ -9,6 +9,8 @@ property-service:
   url: http://localhost:8000
 image-processing-service:
   url: http://localhost:8003
+config-server:
+  url: http://localhost:8004
 
 spring:
   application:
@@ -26,6 +28,10 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+  # Config server
+  config:
+    import:
+      - optional:configserver:http://localhost:8004
 # Eureka
 eureka:
   client:
@@ -43,4 +49,6 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+
 
