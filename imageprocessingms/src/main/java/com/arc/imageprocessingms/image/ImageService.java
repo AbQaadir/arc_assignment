@@ -11,4 +11,7 @@ public interface ImageService {
     byte[] downloadImage(long imageId);
 
 
+    String uploadImageToFileSystem(MultipartFile file) throws IOException;
+
+    byte[] downloadImageFromFileSystem(long fileId) throws IOException;
 }
