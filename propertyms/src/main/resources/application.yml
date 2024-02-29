@@ -34,3 +34,13 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
+
+# Zipkin
+zipkin:
+  base-url: http://localhost:9411
+  enabled: true
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -32,14 +32,14 @@ services:
       - ecommerce
     restart: unless-stopped
 
-#  zipkin:
-#    container_name: zipkin_container
-#    image: openzipkin/zipkin
-#    ports:
-#      - "9411:9411"
-#    networks:
-#      - postgres
-#    restart: unless-stopped
+  zipkin:
+    container_name: zipkin_container
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - ecommerce
+    restart: unless-stopped
 #
 #  rabbitmq:
 #    container_name: rabbitmq_container
