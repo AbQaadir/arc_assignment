@@ -1,9 +1,18 @@
 server:
   port: 8001
 
+authentication-service:
+  url: http://localhost:8002
+review-service:
+  url: http://localhost:8001
+property-service:
+  url: http://localhost:8000
+image-processing-service:
+  url: http://localhost:8003
+
 spring:
   application:
-    name: property-service
+    name: review-service
 
   datasource:
     url: jdbc:postgresql://localhost:5432/review

@@ -25,7 +25,7 @@ public class RegistrationController {
     public String register(@RequestBody RegistrationRequest request, final HttpServletRequest httpServletRequest) {
         User user = userService.registerUser(request);
         applicationEventPublisher.publishEvent(new RegistrationCompleteEvent(user, appUrl(httpServletRequest)));
-        return "User registered successfully";
+        return "Registered successfully";
     }
 
 

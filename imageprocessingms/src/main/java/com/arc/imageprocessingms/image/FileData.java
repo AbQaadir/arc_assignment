@@ -27,9 +27,4 @@ public class FileData {
     @Column(name = "file_path")
     private String filePath;
 
-    @Column(name = "admin_id")
-    private long adminId;
-
-    @Column(name = "property_id")
-    private long propertyId;
 }

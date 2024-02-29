@@ -33,12 +33,10 @@ public class Property {
     @CreationTimestamp
     private String date;
 
-    @Column(name = "property_admin_id")
-    private String adminId;
-
-    @Column(name = "property_review_id")
-    private String reviewId;
-
     @Column(name = "property_image_id")
-    private String imageId;
+    private long imageId;
+
+    @Column(name = "property_admin_id")
+    private long adminId;
+
 }

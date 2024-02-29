@@ -1,6 +1,7 @@
 package com.arc.propertyms.property;
 
 
+import com.arc.propertyms.property.dto.PropertyDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class PropertyController {
     private final PropertyService propertyService;
 
     @GetMapping
-    public ResponseEntity<List<Property>> getAllProperties() {
-        return ResponseEntity.ok(propertyService.getAllProperties());
+    public ResponseEntity<List<PropertyDTO>> findAll() {
+        return ResponseEntity.ok(propertyService.findAll());
     }
 
     @PostMapping
