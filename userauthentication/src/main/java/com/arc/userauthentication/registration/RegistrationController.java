@@ -39,7 +39,7 @@ public class RegistrationController {
         String verificationResult = userService.validateToken(token);
 
         if (verificationResult.equals("valid")) {
-            return "Email verified successfully";
+            return "Email verified successfully. Please login.";
         } else {
             return "Invalid token";
         }

@@ -24,10 +24,24 @@ public class UserServiceImpl implements UserService {
 
     private final VerificationTokenRepository verificationTokenRepository;
 
-
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> findByRole(String role) {
+        return userRepository.findByRole(role);
+    }
+
+    @Override
+    public User findByIdAndRole(Long id, String role) {
+        User user =  userRepository.findByIdAndRole(id, role);
+
+        if (user == null) {
+
+        }
+        return user;
     }
 
     @Override
