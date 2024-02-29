@@ -1,14 +1,14 @@
 package com.arc.imageprocessingms.image;
 
 
-import com.arc.imageprocessingms.image.model.ResponseData;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/image")
@@ -17,10 +17,20 @@ public class ImageController {
 
     private final ImageService imageService;
 
-    @PostMapping("/upload")
-    public ResponseEntity<Image> uploadImage(@RequestParam("image") MultipartFile image) {
-        return ResponseEntity.ok(imageService.saveImage(image));
+    @PostMapping
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+        String response = imageService.uploadImage(file);
+        return ResponseEntity.ok(response);
     }
+
+
+    @GetMapping("/{imageId}")
+    public ResponseEntity<byte[]> downloadImage(@PathVariable long imageId) {
+        byte[] imageData = imageService.downloadImage(imageId);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/jpeg")).body(imageData);
+    }
+
+
 
 
 

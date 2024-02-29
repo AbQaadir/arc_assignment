@@ -3,13 +3,12 @@ package com.arc.imageprocessingms.image.impl;
 import com.arc.imageprocessingms.image.Image;
 import com.arc.imageprocessingms.image.ImageRepository;
 import com.arc.imageprocessingms.image.ImageService;
+import com.arc.imageprocessingms.image.util.ImageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Arrays;
-
 
 
 @Service
@@ -19,15 +18,30 @@ public class ImageServiceImpl implements ImageService {
     private final ImageRepository imageRepository;
 
     @Override
-    public Image saveImage(MultipartFile image) throws IOException {
-        String imageName = image.getOriginalFilename();
+    public String uploadImage(MultipartFile file) throws IOException {
 
-        Image newImage = new Image();
+        Image imageData = imageRepository.save(Image.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .picByte(ImageUtils.compressImage(file.getBytes()))
+                .adminId(1)
+                .propertyId(1)
+                .build());
 
-        newImage.setName(imageName);
-        newImage.setType(image.getContentType());
-        newImage.setPicByte(Arrays.copyOf(image.getBytes(), image.getBytes().length));
+        if (imageData != null) {
+            return "Image uploaded successfully" ;
+        } else {
+            return "Image upload failed";
+        }
+    }
 
-        return imageRepository.save(newImage);
+    @Override
+    public byte[] downloadImage(long imageId) {
+        Image imageData = imageRepository.findById(imageId).orElse(null);
+        if (imageData != null) {
+            return ImageUtils.decompressImage(imageData.getPicByte());
+        } else {
+            return null;
+        }
     }
 }
