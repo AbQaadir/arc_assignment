@@ -15,7 +15,6 @@ import java.io.InputStream;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
 @Table(name = "images")
 public class Image {
     @Id
@@ -23,7 +22,7 @@ public class Image {
     private long id;
 
     @Column(name = "image_name")
-    private String name;
+    private String Name;
 
     @Column(name = "image_type")
     private String type;
@@ -31,8 +30,5 @@ public class Image {
     @Lob
     @Column(name = "picByte", length = 1000)
     private byte[] picByte;
-
-    @Column(name = "admin_id")
-    private long adminId;
 
 }
