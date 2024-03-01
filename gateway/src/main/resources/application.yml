@@ -1,0 +1,61 @@
+server:
+  port: 8888
+
+authentication-service:
+  url: http://localhost:8002
+review-service:
+  url: http://localhost:8001
+property-service:
+  url: http://localhost:8000
+image-processing-service:
+  url: http://localhost:8003
+config-server:
+  url: http://localhost:8004
+
+spring:
+  application:
+    name: review-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      mvc:
+        routes:
+          - id: property-service
+            uri: lb://PROPERTY-SERVICE
+            predicates:
+              - Path=/property/**
+          - id: image-processing-service
+            uri: lb://IMAGE-PROCESSING-SERVICE
+            predicates:
+              - Path=/images/**
+          - id: review-service
+            uri: lb://REVIEW-SERVICE
+            predicates:
+              - Path=/review/**
+          - id: authentication-service
+            uri: lb://AUTHENTICATION-SERVICE
+            predicates:
+              - Path=/admin/**
+
+# Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+# Zipkin
+zipkin:
+  base-url: http://localhost:9411
+  enabled: true
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+
+
