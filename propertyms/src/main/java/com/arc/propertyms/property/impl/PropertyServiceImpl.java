@@ -1,5 +1,6 @@
 package com.arc.propertyms.property.impl;
 
+import com.arc.propertyms.property.dto.ReviewMessage;
 import com.arc.propertyms.property.Property;
 import com.arc.propertyms.property.PropertyRepository;
 import com.arc.propertyms.property.PropertyService;
@@ -11,8 +12,6 @@ import com.arc.propertyms.property.external.Admin;
 import com.arc.propertyms.property.external.Image;
 import com.arc.propertyms.property.external.Review;
 import com.arc.propertyms.property.mapper.PropertyMapper;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -103,6 +102,12 @@ public class PropertyServiceImpl implements PropertyService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    // Update property rating
+    @Override
+    public void updatePropertyRating(ReviewMessage reviewMessage) {
+        System.out.println(reviewMessage.getRating());
     }
 
 }

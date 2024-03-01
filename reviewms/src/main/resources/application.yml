@@ -28,10 +28,19 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+  # RabbitMQ
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
   # Config server
   config:
     import:
       - optional:configserver:http://localhost:8004
+
+
 # Eureka
 eureka:
   client:
